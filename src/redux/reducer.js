@@ -8,23 +8,17 @@ export const rootReducer = (state = initialState, action) => {
     case "tasks/deleteTasks":
       return {
         ...state,
-        tasks: [
-          state.tasks.filter((task) => {
-            task.id !== action.payload;
-          }),
-        ],
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
       };
 
     case "tasks/checkTasks":
       return {
         ...state,
-        tasks: [
-          state.tasks.map((task) => {
-            task.id === action.payload
-              ? { ...task, completed: !task.completed }
-              : task;
-          }),
-        ],
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload
+            ? { ...task, completed: !task.completed }
+            : task
+        ),
       };
 
     case "filters/chengedFilter":
