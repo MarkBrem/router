@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Button } from "../Button/Button";
 import css from "./TaskForm.module.css";
-import { addTasks } from "../../redux/actions";
+import { addTask } from "../../redux/operations";
 
 export const TaskForm = () => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const TaskForm = () => {
       text: form.elements.text.value,
       comleted: false,
     };
-    dispatch(addTasks(newTask));
+    dispatch(addTask(newTask));
     form.reset();
   };
 

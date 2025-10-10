@@ -1,6 +1,6 @@
 import { MdClose } from "react-icons/md";
 import css from "./Task.module.css";
-import { checkTasks, deleteTasks } from "../../redux/actions";
+import { switchTask, deleteTask } from "../../redux/operations";
 import { useDispatch } from "react-redux";
 
 export const Task = ({ task }) => {
@@ -8,7 +8,7 @@ export const Task = ({ task }) => {
   return (
     <div className={css.wrapper}>
       <input
-        onChange={() => dispatch(checkTasks(task.id))}
+        onChange={() => dispatch(switchTask(task))}
         type="checkbox"
         className={css.checkbox}
         checked={task.completed}
@@ -16,7 +16,7 @@ export const Task = ({ task }) => {
       <p className={css.text}>{task.text}</p>
       <button
         onClick={() => {
-          dispatch(deleteTasks(task.id));
+          dispatch(deleteTask(task));
         }}
         className={css.btn}
       >
