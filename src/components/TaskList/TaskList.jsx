@@ -1,20 +1,14 @@
-import { getFilter, getTasks } from "../../redux/selectors";
 import { Task } from "../Task/Task";
 import css from "./TaskList.module.css";
+import { filteredTasks } from "../../redux/selectors";
 import { useSelector } from "react-redux";
 export const TaskList = () => {
-  const tasks = useSelector(getTasks);
-  const filter = useSelector(getFilter);
-
-  const filteredTasks = tasks.filter((task) => {
-    if (filter === "active") return !task.completed;
-    if (filter === "completed") return task.completed;
-    return true;
-  });
+  const tasks = useSelector(filteredTasks);
+  console.log(tasks);
   return (
     <ul className={css.list}>
       {" "}
-      {filteredTasks.map((task) => (
+      {tasks.map((task) => (
         <li className={css.listItem} key={task.id}>
           {" "}
           <Task task={task} />{" "}
